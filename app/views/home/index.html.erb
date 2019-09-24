@@ -1,0 +1,28 @@
+<br>
+<br>
+
+<h2>HOME</h2>
+
+<div>
+<% if user_signed_in? %>
+
+<%= link_to 'パスワード変更', edit_user_registration_path %>
+<br>
+<%= link_to 'ログアウト', destroy_user_session_path %>
+
+<br>
+<%= link_to '勤怠記録(dev)', recordtime_path  %>
+<br>
+<%= link_to '勤怠申請(dev)', recordholiday_path  %>
+
+
+<% else %>
+<%= link_to 'ログイン', new_user_session_path %>
+<br>
+<%= link_to "アカウント新規作成   ", new_user_registration_path %>
+<% end %>
+
+</div>
+<br>
+
+

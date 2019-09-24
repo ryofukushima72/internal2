@@ -1,0 +1,37 @@
+// Place all the styles related to the file_uploads controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.file_category{
+	width: 80px;
+		
+}
+.file_name{
+    width: 400px;
+}
+.file_command{
+    width: 50px;
+}
+.file_date{
+    width: 90px;
+}
+    
+div.file_list_area{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: auto;
+}
+div.file_upload_area{
+	padding-left: 40px;
+}
+div.return_link_to_top{
+	padding-left: 20px;
+}
+.file_uploads {
+    width: auto;
+    // padding: 50px;
+  }
+.file_uploads td{
+    
+    padding: 10px;
+  }

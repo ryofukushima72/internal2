@@ -1,0 +1,897 @@
+<div class="container">
+
+<style type="text/css">
+
+</style>
+
+<script src='fixed_midashi.js'></script>
+
+  <% sum_projects = 0 %>  
+	<% sum_projects_rf = 0 %> 
+	<% sum_projects_rf_month=0 %>
+
+<p id="notice"><%= notice %></p>
+<%= search_form_for @q, class: 'mb-5',:url => {:action => :index} do |f| %>
+<div><!-- Ransack -->
+
+<table class="search_index">
+<tr>
+<td>
+	<div class='form-group.row'>
+    <div class="col-xs-2">
+      <%= f.label :no_cont, 'No.', class:'control-label' %>
+    </div>
+		<div class="col-xs-10">
+			<%= f.search_field :no_cont, class: 'form-control' %>
+		</div>
+  </div>
+</td><td>
+  <div class='form-group.row'>
+    <div class="col-xs-2">
+      <%= f.label :task_cont, 'PJ', class:'control-label' %>
+    </div>
+    <div class="col-xs-10">
+			<%= f.search_field :task_cont, class: 'form-control' %>
+		</div>
+  </div>
+</td><td>
+  <div class='form-group.row'>
+    <div class="col-xs-2">
+      <%= f.label :charge_cont, '担当', class:'control-label' %>
+    </div>
+    <div class="col-xs-10">  
+			<%= f.search_field :charge_cont, class: 'form-control' %>
+		</div>
+  </div>
+</td><td>
+  <div class='form-group.row'>
+    <div class="col-xs-2">
+			<%= f.label :company_cont, '会社', class:'control-label' %>
+    </div>
+    <div class="col-xs-10">
+			<%= f.search_field :company_cont, class: 'form-control' %>
+		</div>
+  </div>
+</td>
+</tr>
+<tr>
+  <td colspan="2">
+	
+  <div class="form-group.row">
+		<%= f.label :level_eq_any, '状況', class: 'col-sm-1' %>
+		<div class='col-sm-11'>
+      <%= f.check_box :level_eq_any, { multiple: true}, 'S:営業' %>S:営業
+      <%= f.check_box :level_eq_any, { multiple: true}, 'A:Advisory' %>A:Advisory
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'P:POC' %>P:POC
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'D:開発' %>D:開発
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'M:運用' %>M:運用
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'T:追加学習' %>T:追加学習
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'R:Royalty' %>R:Royalty
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'G:休眠' %>G:休眠
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'F:完了' %>F:完了
+		  <%= f.check_box :level_eq_any, { multiple: true}, 'H:失注' %>H:失注
+		</div>
+  </div>
+</td>
+<td colspan="2">
+	
+  <div class="form-group.row">
+	      <%= f.label :tech_eq, '製品', class: 'col-sm-1 col-form-label' %>
+		  <div class='col-sm-11'>
+		    <%= f.radio_button :tech_eq, '', {:checked => true} %>指定なし
+        <%= f.radio_button :tech_eq, '未定' %>未定
+        <%= f.radio_button :tech_eq, 'Advisory' %>Advisory
+        <%= f.radio_button :tech_eq, 'OCR' %>OCR
+        <%= f.radio_button :tech_eq, 'Sia' %>Sia
+        <%= f.radio_button :tech_eq, 'Dia' %>Dia
+        <%= f.radio_button :tech_eq, 'NLP' %>NLP
+		    <%= f.radio_button :tech_eq, 'DB' %>DB
+		    <%= f.radio_button :tech_eq, 'Robo' %>Robo
+		    <%= f.radio_button :tech_eq, 'R3' %>R3
+		    <%= f.radio_button :tech_eq, 'Cloud' %>Cloud
+		    <%= f.radio_button :tech_eq, 'UI/UX' %>UI/UX
+		  </div>
+  </div>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+  <div class="form-group.row">
+      <%= f.label :forapp_eq, '申請', class: 'col-sm-1 col-form-label' %>
+    <div class='col-sm-11'>
+      <%= f.radio_button :forapp_eq, '', {:checked => true} %>指定なし
+      <%= f.radio_button :forapp_eq, 'true' %>申請中
+      <%= f.radio_button :forapp_eq, 'false' %>その他
+    </div>
+  </div>
+</td>
+</tr>
+</table>
+	<div class='form-group'>
+		<%= f.submit('検索',class: 'btn btn-primary my-1 mb-5 px-5') %>
+  </div>  
+    <% end %>
+</div><!-- Ransack -->
+
+<div>
+<input type="radio" name="btn" id="a" checked="checked">A.百万単位、確度無し
+<input type="radio" name="btn" id="b">B.１円単位、確度無し
+<input type="radio" name="btn" id="c">C.百万単位、確度有り
+<input type="radio" name="btn" id="d">D.１円単位、確度有り
+</div>
+ 
+
+<div style="height:650px; overflow-x:scroll; overflow-y:scroll;">
+		<table _fixedhead='rows:3; cols:3' width="3582px" style="table-layout:fixed;" id="projects" class="projects" >
+      <thead>
+        <tr>
+          <th class="column1" ><div class="sort" data-sort="no" >No.</div></th>
+          <th class="column4">PJ名称</th>
+	  	    <th class="column23">議事録</th>
+          <th class="column3">担当</th>
+          <th class="column2">お客様</th>
+          <th class="column7"><div class="sort" data-sort="sum_int_month_rf" >合計</div></th>
+          <th class="column8">19/04</th>
+		      <th class="column9">19/05</th>
+  		    <th class="column10">19/06</th>
+	  	    <th class="column11">19/07</th>
+		      <th class="column12">19/08</th>
+		      <th class="column13">19/09</th>
+		      <th class="column14">19/10</th>
+  		    <th class="column15">19/11</th>
+	  	    <th class="column16">19/12</th>
+		      <th class="column17">20/01</th>
+		      <th class="column18">20/02</th>
+          <th class="column19">20/03</th>
+          <th class="column19">team</th>
+          <th class="column5">製品名</th>
+          <th class="column19">salestype</th>
+          <th class="column22">確度</th>
+          <th class="column22"></th>
+          <th class="column6">段階</th>
+		      <th class="column19">受注額</th>
+          <th class="column19">契約日</th>
+          <th class="column19">開始月</th>
+          <th class="column19">終了月</th>
+          <th class="column19">納入予定日</th>
+          <th class="column19">納入月</th>
+          <th class="column19">検収予定日</th>
+          <th class="column19">検収月</th>
+          <th class="column19">入金予定日1</th>
+          <th class="column19">入金月1</th>      
+          <th class="column19">入金予定日2</th>
+          <th class="column19">入金月2</th>     
+          <th class="column19">入金タイプ</th>        
+          <th class="column21">NDA</th>
+          <th class="column21">見積書</th>
+          <th class="column21">契約書</th>
+          <th class="column21">注文書</th>
+          
+          <th class="column21">検収書</th>
+          <th class="column21">請求書</th>
+          <th class="column19">予定工数</th>
+          <th class="column19">実績工数</th>
+          <th class="column19">予定単価</th>
+          <th class="column19">実際単価</th>
+          <th class="column20">備考</th>
+        </tr>
+
+        <tr class="tablerow tablerow01 tablerow02">
+          <td class="column1"></td>
+          <td class="column4">
+            <div class="text text01">A.百万単位、確度無し</div>
+            <div class="text text02">B.１円単位、確度無し</div>
+          </td>
+          <td class="column23"></td>
+          <td class="column3"></td>
+          <td class="column2"  align="right"><div class="text text01">合計(百万円)</div><div class="text text02">合計(円)</div></td>
+          <td class="column7"  align="right"><b><div class="text text01"><%= ((@sum_projects_month).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@sum_projects_month).to_f.round(0).to_s(:delimited) %></div></b></td>
+  	      <td class="column8"  align="right"><div class="text text01"><%= ((@total_y1904).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1904).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column9"  align="right"><div class="text text01"><%= ((@total_y1905).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1905).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column10" align="right"><div class="text text01"><%= ((@total_y1906).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1906).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column11" align="right"><div class="text text01"><%= ((@total_y1907).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1907).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column12" align="right"><div class="text text01"><%= ((@total_y1908).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1908).to_f.round(0).to_s(:delimited) %></div></td>
+  	      <td class="column13" align="right"><div class="text text01"><%= ((@total_y1909).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1909).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column14" align="right"><div class="text text01"><%= ((@total_y1910).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1910).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column15" align="right"><div class="text text01"><%= ((@total_y1911).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1911).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column16" align="right"><div class="text text01"><%= ((@total_y1912).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y1912).to_f.round(0).to_s(:delimited) %></div></td>
+	        <td class="column17" align="right"><div class="text text01"><%= ((@total_y2001).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y2001).to_f.round(0).to_s(:delimited) %></div></td>
+  	      <td class="column18" align="right"><div class="text text01"><%= ((@total_y2002).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y2002).to_f.round(0).to_s(:delimited) %></div></td>
+          <td class="column19" align="right"><div class="text text01"><%= ((@total_y2003).to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@total_y2003).to_f.round(0).to_s(:delimited) %></div></td>
+          <td class="column19"></td>
+          <td class="column5"></td>
+          <td class="column19"></td>
+          <th class="column22"></th>
+          <td class="column22"></td>
+          <td class="column6"></td>
+          <td class="column19" align="center"><div class="text text01">(百万円)</div><div class="text text02">(円)</div></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column21"></td>          
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column19" align="center">(人月)</td>
+          <td class="column19" align="center">(人月)</td>
+          <td class="column19" align="center"><div class="text text01">(百万円/人月)</div><div class="text text02">(円/人月)</div></td>
+          <td class="column19" align="center"><div class="text text01">(百万円/人月)</div><div class="text text02">(円/人月)</div></td>
+          <td class="column20"></td>
+        </tr>
+        
+	      <tr class="tablerow tablerow03 tablerow04">
+          <td class="column1"></td>
+          <td class="column4">
+            <div class="text text03">C.百万単位、確度有り</div>
+            <div class="text text04">D.１円単位、確度有り</div>
+          </td>
+          <td class="column23"></td>
+          <td class="column3"></td>
+          <td class="column2"  align="right"><div class="text text03">確度込みの合計(百万円)</div><div class="text text04">確度込みの合計(円)</div> </td>
+	        <td class="column7"  align="right"><b><div class="text text03"><%= ((@sum_projects_rf_month).to_f/(10**6)).round(1) %></div><div class="text text04"><%= (@sum_projects_rf_month).to_f.round(0).to_s(:delimited) %></div></b></td>
+	        <td class="column8"  align="right"><div class="text text03"><%= ((@total_y1904_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1904_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column9"  align="right"><div class="text text03"><%= ((@total_y1905_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1905_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column10" align="right"><div class="text text03"><%= ((@total_y1906_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1906_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column11" align="right"><div class="text text03"><%= ((@total_y1907_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1907_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column12" align="right"><div class="text text03"><%= ((@total_y1908_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1908_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column13" align="right"><div class="text text03"><%= ((@total_y1909_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1909_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column14" align="right"><div class="text text03"><%= ((@total_y1910_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1910_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column15" align="right"><div class="text text03"><%= ((@total_y1911_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1911_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column16" align="right"><div class="text text03"><%= ((@total_y1912_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y1912_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column17" align="right"><div class="text text03"><%= ((@total_y2001_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y2001_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+	        <td class="column18" align="right"><div class="text text03"><%= ((@total_y2002_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y2002_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+          <td class="column19" align="right"><div class="text text03"><%= ((@total_y2003_and_rf).to_f/(10**6)).round(1)  %></div><div class="text text04"><%= (@total_y2003_and_rf).to_f.round(0).to_s(:delimited)  %></div></td>
+          <td class="column19"></td>
+          <td class="column5"></td>
+          <td class="column19"></td>
+          <th class="column22"></th>
+          <td class="column22"></td>
+          <td class="column6"></td>
+          <td class="column19" align="center"><div class="text text03">(百万円)</div><div class="text text04">(円)</div></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column19"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column21"></td>
+          <td class="column19" align="center">(人月)</td>
+          <td class="column19" align="center">(人月)</td>
+          <td class="column19" align="center"><div class="text text03">(百万円/人月)</div><div class="text text04">(円/人月)</div></td>
+          <td class="column19" align="center"><div class="text text03">(百万円/人月)</div><div class="text text04">(円/人月)</div></td>
+          <td class="column20"></td>
+        </tr>
+      </thead>
+      <tbody class = "list">
+      <% @projects.each do |p| %>
+        <tr>
+            <% if @column_name == 'y1904' %><% @month = p.y1904 %>
+            <% elsif @column_name == 'y1905' %><% @month = p.y1905 %>
+            <% elsif @column_name == 'y1906' %><% @month = p.y1906 %>
+            <% elsif @column_name == 'y1907' %><% @month = p.y1907 %>
+            <% elsif @column_name == 'y1908' %><% @month = p.y1908 %>
+            <% elsif @column_name == 'y1909' %><% @month = p.y1909 %>
+            <% elsif @column_name == 'y1910' %><% @month = p.y1910 %>
+            <% elsif @column_name == 'y1911' %><% @month = p.y1911 %>
+            <% elsif @column_name == 'y1912' %><% @month = p.y1912 %>
+            <% elsif @column_name == 'y2001' %><% @month = p.y2001 %>
+            <% elsif @column_name == 'y2002' %><% @month = p.y2002 %>
+            <% elsif @column_name == 'y2003' %><% @month = p.y2003 %>
+            <% else %><% @month = 0 %>
+            <% end %>
+
+
+            
+
+          <td class="column1" ><%= link_to p.no, edit_project_path(p) %></td>
+          
+         
+          
+          <td class="column4" ><%= p.task %></td>
+          <td class="column23" align="center"><%= link_to p.counte, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+
+          <td class="column3"><%= p.charge %></td>          
+          <td class="column2" ><%= p.company %></td>       
+
+          <td class="column7"><div class="sum_int_month_rf" align="right"><b><div class="text text01"><%=((p.sum19.to_f)/(10**6)).round(1) %></div><div class="text text02"><%= p.sum19.to_s(:delimited) %></div><div class="text text03"><%=((p.sum19pf.to_f)/(10**6)).round(1) %></div><div class="text text04"><%= (p.sum19pf).round(0).to_s(:delimited) %></div></b></div></td>
+  
+          <td class="column19" align="right"><div class="text text01"><%= (p.y1904.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1904.to_s(:delimited) %></div><div class="text text03"><%= (p.y1904.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1904).round(0).to_s(:delimited) %></div></td>
+			    <td class="column19" align="right"><div class="text text01"><%= (p.y1905.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1905.to_s(:delimited) %></div><div class="text text03"><%= (p.y1905.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1905).round(0).to_s(:delimited) %></div></td>
+			    <td class="column19" align="right"><div class="text text01"><%= (p.y1906.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1906.to_s(:delimited) %></div><div class="text text03"><%= (p.y1906.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1906).round(0).to_s(:delimited) %></div></td>
+			    <td class="column19" align="right"><div class="text text01"><%= (p.y1907.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1907.to_s(:delimited) %></div><div class="text text03"><%= (p.y1907.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1907).round(0).to_s(:delimited) %></div></td>
+			    <td class="column19" align="right"><div class="text text01"><%= (p.y1908.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1908.to_s(:delimited) %></div><div class="text text03"><%= (p.y1908.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1908).round(0).to_s(:delimited) %></div></td>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1909.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1909.to_s(:delimited) %></div><div class="text text03"><%= (p.y1909*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1909*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1909.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1909.to_s(:delimited) %></div><div class="text text03"><%= (p.y1909.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1909).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909', 'y1910']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1910.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1910.to_s(:delimited) %></div><div class="text text03"><%= (p.y1910*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1910*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1910.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1910.to_s(:delimited) %></div><div class="text text03"><%= (p.y1910.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1910).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909', 'y1910', 'y1911']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1911.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1911.to_s(:delimited) %></div><div class="text text03"><%= (p.y1911*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1911*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1911.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1911.to_s(:delimited) %></div><div class="text text03"><%= (p.y1911.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1911).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909', 'y1910', 'y1911', 'y1912']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1912.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1912.to_s(:delimited) %></div><div class="text text03"><%= (p.y1912*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1912*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y1912.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y1912.to_s(:delimited) %></div><div class="text text03"><%= (p.y1912.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y1912).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909', 'y1910', 'y1911', 'y1912', 'y2001']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y2001.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y2001.to_s(:delimited) %></div><div class="text text03"><%= (p.y2001*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y2001*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y2001.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y2001.to_s(:delimited) %></div><div class="text text03"><%= (p.y2001.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y2001).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909', 'y1910', 'y1911', 'y1912', 'y2001', 'y2002']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y2002.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y2002.to_s(:delimited) %></div><div class="text text03"><%= (p.y2002*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y2002*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y2002.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y2002.to_s(:delimited) %></div><div class="text text03"><%= (p.y2002.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y2002).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          <% if @column_name.in?(['y1905','y1906','y1907','y1908', 'y1909', 'y1910', 'y1911', 'y1912', 'y2001', 'y2002', 'y2003']) %> 
+            <td class="column19" align="right"><div class="text text01"><%= (p.y2003.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y2003.to_s(:delimited) %></div><div class="text text03"><%= (p.y2003*p.pf.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y2003*p.pf).round(0).to_s(:delimited) %></div></td>
+          <% else %>
+            <td class="column19" align="right"><div class="text text01"><%= (p.y2003.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.y2003.to_s(:delimited) %></div><div class="text text03"><%= (p.y2003.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (p.y2003).round(0).to_s(:delimited) %></div></td>
+          <% end %>
+          
+          <td class="column19" align="center"><%= p.team %></td>
+          <td class="column5"  align="center"><%= p.tech %></td>
+          <td class="column19" align="center"><%= p.salestype %></td>
+          <td class="column22" align="center"><% if p.pf == 1 %> S <% elsif p.pf == 0.8 %> A <% elsif p.pf == 0.5 %> B <% elsif p.pf == 0 %> C <% else %> --- <% end %></td>
+          <td class="column22" align="center"><%= p.pf %></td>
+          <td class="column6"><%= link_to p.level, approvals_path(:project_id => p.id) %><% if p.forapp? %><b>(申請有)</b><% end %></td>
+          
+          <td class="column19" align="right"><div class="text text01"><%= (p.pjprice.to_f/(10**6)).round(1) %></div><div class="text text02"><%= p.pjprice.to_s(:delimited) %></div><div class="text text03"><%= (p.pjprice.to_f/(10**6)).round(1) %></div><div class="text text04"><%= p.pjprice.to_s(:delimited) %></div></td>
+          <td class="column19" align="center"><% if p.contract == nil %>---<% else %><%= p.contract %><% end %></td>
+          <td class="column19" align="center"><% if p.start == nil %>---<% else %><%= p.start.strftime('%Y-%m') %><% end %></td>
+          <td class="column19" align="center"><% if p.end == nil %>---<% else %><%= p.end.strftime('%Y-%m') %><% end %></td>
+          <td class="column19" align="center"><% if p.delivery == nil %>---<% else %><%= p.delivery %><% end %></td>
+          <td class="column19" align="center"><% if p.deliverymonth == nil %>---<% else %><%= p.deliverymonth.strftime('%Y-%m') %><% end %></td>
+          <td class="column19" align="center"><% if p.inspe == nil %>---<% else %><%= p.inspe %><% end %></td>
+          <td class="column19" align="center"><% if p.insmonth == nil %>---<% else %><%= p.insmonth.strftime('%Y-%m') %><% end %></td>
+          <td class="column19" align="center"><% if p.deposit == nil %>---<% else %><%= p.deposit %><% end %></td>
+          <td class="column19" align="center"><% if p.depomonth == nil %>---<% else %><%= p.depomonth.strftime('%Y-%m') %><% end %></td>
+          <td class="column19" align="center"><% if p.deposit2 == nil %>---<% else %><%= p.deposit2 %><% end %></td>
+          <td class="column19" align="center"><% if p.depomonth2 == nil %>---<% else %><%= p.depomonth2.strftime('%Y-%m') %><% end %></td>
+          <td class="column19" align="center"><% if p.deposittype == nil %>---<% else %><%= p.deposittype %><% end %></td>
+     
+          <td class="column21"  align="center"><%= link_to p.counta, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+          <td class="column21"  align="center"><%= link_to p.countb, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+          <td class="column21"  align="center"><%= link_to p.countc, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+          <td class="column21"  align="center"><%= link_to p.countg, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+          
+          <td class="column21"  align="center"><%= link_to p.countf, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+          <td class="column21"  align="center"><%= link_to p.countd, file_uploads_path(:project_id => p.id, :search_word => params[:search],:sort => params[:sort] ) %></td>
+          
+          <td class="column19" align="right"><%= p.plancost %></td>
+          <td class="column19" align="right"><%= p.realcost %></td>
+          <% if p.plancost != 0 and p.plancost !=nil %><% @planunit = p.pjprice/p.plancost %><% else %><% @planunit = '---' %><% end %>
+          <% if p.realcost != 0 and p.realcost !=nil %><% @realunit = p.pjprice/p.realcost %><% else %><% @realunit = '---' %><% end %>
+          <td class="column19" align="right"><div class="text text01"><%= (@planunit.to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@planunit.to_f).round(0).to_s(:delimited) %></div><div class="text text03"><%= (@planunit.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (@planunit.to_f).round(0).to_s(:delimited) %></div></td>
+          <td class="column19" align="right"><div class="text text01"><%= (@realunit.to_f/(10**6)).round(1) %></div><div class="text text02"><%= (@realunit.to_f).round(0).to_s(:delimited) %></div><div class="text text03"><%= (@realunit.to_f/(10**6)).round(1) %></div><div class="text text04"><%= (@realunit.to_f).round(0).to_s(:delimited) %></div></td>
+          <td class="column20" align="right"><%= p.remarks %></td>
+        </tr>
+      <% end %>    
+      </tbody>
+    </table>
+    
+  </div>
+  <br>
+  <%= link_to "PJ新規追加", new_project_path, class: 'btn btn-default' %>
+
+  <button id="export_A" data-export="export" class="btn btn-primary">CSV Export_A</button>
+  <button id="export_B" data-export="export" class="btn btn-primary">CSV Export_B</button>
+ <!-- <button id="export_C" data-export="export" class="btn btn-primary">CSV Export_C</button>  -->
+ <!-- <button id="export_D" data-export="export" class="btn btn-primary">CSV Export_D</button>  -->
+  
+  <br><br><br>
+
+  <!--Div that will hold the dashboard-->
+  <div id="dashboard_div"><!--dashboard-->
+      <div id="filter"></div><!--filter-->
+    <div id="graph" style="display:inline-flex">
+    <style type="text/css">
+    p.vertical {
+writing-mode: tb-rl;
+    }
+    div.graph_label{
+      width:200px;
+      padding-left:1090px;
+      position:absolute;
+      height:200px;
+      padding-top:65px;
+    }
+    table.graph_label_table{
+width:270px;
+    }	      
+    table.graph_label_table tbody{
+height:50px;	      
+width:270px;	      
+    }	      
+    table.graph_label_table td{
+      border-style: none;
+    }
+    </style>
+    <p class="vertical" >売上金額(百万円) </p>
+
+    <div id="chart_div" style="width: 1400px; height: 500px;"></div>
+
+
+    <div class="graph_label" >
+      <table class="graph_label_table" style="width:270px;" >
+      <tbody>
+        <td bgcolor='#41A317' style="width:35px; " ></td>
+  <td style="width:10px; " ></td>
+       <td style="width:200px; " >単月計(入金済み)</td>
+      </tbody>
+    </table>
+    </div>
+
+    </div><!--dashboar-->
+    
+    
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+	  <script>
+		  var options = {
+			valueNames: [ 'no', 'company', 'charge', 'task', 'product_name', 'level', 'sum_int_month_rf', 'y1904', 'y1905', 'y1906', 'y1907', 'y1908', 'y1909', 'y1910', 'y1911', 'y1912', 'y2001', 'y2002', 'y2003', 'pjprice']
+			};
+		  var userList = new List('projects', options);
+		  userList.sort( 'sum_int_month_rf', {order : 'desc' });
+	  </script>
+  <style>
+    .sort.desc:after {
+	          content:"▼";
+			      }
+        .sort.asc:after {
+		      content:"▲";
+			          }
+  </style>
+  
+  <script type="text/javascript">
+function checkdiv( obj,id ) {
+if( obj.checked ){
+document.getElementById(id).style.display = "block";
+}
+else {
+document.getElementById(id).style.display = "none";
+}
+}
+</script>
+<script>
+$(function() {
+  $('[name="btn"]:radio').change( function() {
+    if($('[id=a]').prop('checked')){
+      $('.text').hide();
+      $('.text01').show();
+      $('.tablerow').hide();
+      $('.tablerow01').show();
+    } else if ($('[id=b]').prop('checked')) {
+      $('.text').hide();
+      $('.text02').show();
+      $('.tablerow').hide();
+      $('.tablerow02').show();
+    } else if ($('[id=c]').prop('checked')) {
+      $('.text').hide();
+      $('.text03').show();
+      $('.tablerow').hide();
+      $('.tablerow03').show();
+    } else if ($('[id=d]').prop('checked')) {
+      $('.text').hide();
+      $('.text04').show();
+      $('.tablerow').hide();
+      $('.tablerow04').show();
+    } 
+  });
+});
+</script>
+
+
+  <script>
+  window.onload = function()
+  {
+      FixedMidashi.create();
+  };
+  </script>
+  <script>
+
+	//Export CSV
+	$("#export").click(function(){
+	$("#projects").tableToCSV();
+  });
+  
+  </script>
+  <script>
+
+	//Export CSV_A
+	$("#export_A").click(function(){
+	$("#projects_A").tableToCSV();
+  });
+  //Export CSV_B
+	$("#export_B").click(function(){
+	$("#projects_B").tableToCSV();
+  });
+  //Export CSV_C
+	$("#export_C").click(function(){
+	$("#projects_C").tableToCSV();
+  });
+  //Export CSV_D
+	$("#export_D").click(function(){
+	$("#projects_D").tableToCSV();
+  });
+  
+  </script>
+
+
+</div>
+
+
+
+<table id="projects_A" style="visibility:hidden"><!-- Table B -->
+<thead>
+  <tr>
+    <th>No.</th>
+    <th>PJ名称</th>
+    <th>議事録</th>
+    <th>担当</th>
+    <th>お客様</th>
+    <th>合計</th>
+    <th>2019-04</th>
+    <th>2019-05</th>
+    <th>2019-06</th>
+    <th>2019-07</th>
+    <th>2019-08</th>
+    <th>2019-09</th>
+    <th>2019-10</th>
+    <th>2019-11</th>
+    <th>2019-12</th>
+    <th>2020-01</th>
+    <th>2020-02</th>
+    <th>2020-03</th>
+    <th>team</th>
+    <th>製品名</th>
+    <th>type</th>
+    <th>確度</th>
+    <th></th>
+    <th>段階</th>
+    <th>受注額</th>
+    <th>契約日</th>
+    <th>開始月</th>
+    <th>終了月</th>
+    
+    <th>納入予定日</th>
+    <th>納入月</th>
+    <th>検収予定日</th>
+    <th>検収月</th>
+    <th>入金予定日1</th>
+    <th>入金月1</th>     
+    <th>入金予定日2</th>
+    <th>入金月2</th>                
+    <th>NDAD</th>
+    <th>見積書</th>
+    <th>契約書</th>
+    <th>注文書</th>
+    
+    <th>検収書</th>
+    <th>請求書</th>
+    <th>予定工数</th>
+    <th>実績工数</th>
+    <th>予定単価</th>
+    <th>実際単価</th>
+    <th>備考</th>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>
+      A.百万単位、確度無し
+      
+    </td>
+    <td></td>
+    <td></td>
+    <td>合計(百万円)</td>
+    <td><%= ((@sum_projects_month).to_f/(10**6)).round(1) %></td>
+  	<td><%= ((@total_y1904).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1905).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1906).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1907).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1908).to_f/(10**6)).round(1) %></td>
+  	<td><%= ((@total_y1909).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1910).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1911).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y1912).to_f/(10**6)).round(1) %></td>
+	  <td><%= ((@total_y2001).to_f/(10**6)).round(1) %></td>
+  	<td><%= ((@total_y2002).to_f/(10**6)).round(1) %></td>
+    <td><%= ((@total_y2003).to_f/(10**6)).round(1) %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <th></th>
+    <td></td>
+    <td></td>
+    <td>(百万円)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>(人月)</td>
+    <td>(人月)</td>
+    <td>(百万円/人月)</td>
+    <td>(百万円/人月)</td>
+    <td></td>
+  </tr>
+</thead>
+<tbody class = "list">
+<% @projects.each do |p| %>
+  <tr>
+      
+    <td><%= p.no %></td>
+    <td><%= p.task %></td>
+    <td><%= p.counte %></td>
+    <td><%= p.charge %></td>          
+    <td><%= p.company %></td>    
+    <td><%=((p.sum19.to_f)/(10**6)).round(1) %></td>
+    <td><%= (p.y1904.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1905.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1906.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1907.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1908.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1909.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1910.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1911.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y1912.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y2001.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y2002.to_f/(10**6)).round(1) %></td>
+    <td><%= (p.y2003.to_f/(10**6)).round(1) %></td>
+
+    <td><%= p.team %></td>
+    <td><%= p.tech %></td>
+    <td><%= p.salestype %></td>
+    <td><% if p.pf == 1 %> S <% elsif p.pf == 0.8 %> A <% elsif p.pf == 0.5 %> B <% elsif p.pf == 0 %> C <% else %> --- <% end %></td>
+    <td><%= p.pf %></td>
+    <td><%= p.level %></td>
+
+    <td><%= (p.pjprice.to_f/(10**6)).round(1) %></td>
+    <td><% if p.contract == nil %>---<% else %><%= p.contract %><% end %></td>
+    <td><% if p.start == nil %>---<% else %><%= p.start.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.end == nil %>---<% else %><%= p.end.strftime('%Y-%m') %><% end %></td>
+    
+    <td><% if p.delivery == nil %>---<% else %><%= p.delivery %><% end %></td>
+    <td><% if p.deliverymonth == nil %>---<% else %><%= p.deliverymonth.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.inspe == nil %>---<% else %><%= p.inspe %><% end %></td>
+    <td><% if p.insmonth == nil %>---<% else %><%= p.insmonth.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.deposit == nil %>---<% else %><%= p.deposit %><% end %></td>
+    <td><% if p.depomonth == nil %>---<% else %><%= p.depomonth.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.deposit2 == nil %>---<% else %><%= p.deposit2 %><% end %></td>
+    <td><% if p.depomonth2 == nil %>---<% else %><%= p.depomonth2.strftime('%Y-%m') %><% end %></td>
+    <td><%= p.counta %></td>
+    <td><%= p.countb %></td>
+    <td><%= p.countc %></td>
+    <td><%= p.countg %></td>
+    
+    <td><%= p.countf %></td>
+    <td><%= p.countd %></td>
+    
+    <td><%= p.plancost %></td>
+    <td><%= p.realcost %></td>
+    <% if p.plancost != 0 and p.plancost !=nil %><% @planunit = p.pjprice/p.plancost %><% else %><% @planunit = '---' %><% end %>
+    <% if p.realcost != 0 and p.realcost !=nil %><% @realunit = p.pjprice/p.realcost %><% else %><% @realunit = '---' %><% end %>
+    <td><%= (@planunit.to_f/(10**6)).round(1) %></td>
+    <td><%= (@realunit.to_f/(10**6)).round(1) %></td>
+    <td><%= p.remarks %></td>
+  </tr>
+<% end %>    
+</tbody>
+</table>
+
+
+<table id="projects_B" style="visibility:hidden"><!-- Table B -->
+<thead>
+  <tr>
+    <th>No.</th>
+    <th>PJ名称</th>
+    <th>議事録</th>
+    <th>担当</th>
+    <th>お客様</th>
+    <th>合計(毎月RF)</th>
+    <th>2019-04</th>
+    <th>2019-05</th>
+    <th>2019-06</th>
+    <th>2019-07</th>
+    <th>2019-08</th>
+    <th>2019-09</th>
+    <th>2019-10</th>
+    <th>2019-11</th>
+    <th>2019-12</th>
+    <th>2020-01</th>
+    <th>2020-02</th>
+    <th>2020-03</th>
+    <th>team</th>
+    <th>製品名</th>
+    <th>type</th>
+    <th>確度</th>
+    <th></th>
+    <th>段階</th>
+    <th>受注額</th>
+    <th>契約日</th>
+    <th>開始月</th>
+    <th>終了月</th>
+    
+    <th>納入予定日</th>
+    <th>納入月</th>
+    <th>検収予定日</th>
+    <th>検収月</th>
+    <th>入金予定日1</th>
+    <th>入金月1</th>             
+    <th>入金予定日2</th>
+    <th>入金月2</th> 
+    <th>NDAD</th>
+    <th>見積書</th>
+    <th>契約書</th>
+    <th>注文書</th>
+    
+    <th>検収書</th>
+    <th>請求書</th>
+    <th>予定工数</th>
+    <th>実績工数</th>
+    <th>予定単価</th>
+    <th>実際単価</th>
+    <th>備考</th>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>
+      
+      B.１円単位、確度無し
+    </td>
+    <td></td>
+    <td></td>
+    <td>合計(円)</td>
+    <td><%= (@sum_projects_month).to_f.round(0) %></td>
+  	<td><%= (@total_y1904).to_f.round(0) %></td>
+	  <td><%= (@total_y1905).to_f.round(0) %></td>
+    <td><%= (@total_y1906).to_f.round(0) %></td>
+    <td><%= (@total_y1907).to_f.round(0) %></td>
+    <td><%= (@total_y1908).to_f.round(0) %></td>
+    <td><%= (@total_y1909).to_f.round(0) %></td>
+    <td><%= (@total_y1910).to_f.round(0) %></td>
+    <td><%= (@total_y1911).to_f.round(0) %></td>
+    <td><%= (@total_y1912).to_f.round(0) %></td>
+    <td><%= (@total_y2001).to_f.round(0) %></td>
+    <td><%= (@total_y2002).to_f.round(0) %></td>
+    <td><%= (@total_y2003).to_f.round(0) %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <th></th>
+    <td></td>
+    <td></td>
+    <td>(円)</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>(人月)</td>
+    <td>(人月)</td>
+    <td>(円/人月)</td>
+    <td>(円/人月)</td>
+    <td></td>
+  </tr>
+  
+  
+</thead>
+<tbody class = "list">
+<% @projects.each do |p| %>
+  <tr>
+      
+     
+
+    <td><%= p.no %></td>
+    <td><%= p.task %></td>
+    <td><%= p.counte %></td>
+    <td><%= p.charge %></td>          
+    <td><%= p.company %></td>    
+    <td><%= p.sum19 %></td>
+    <td><%= p.y1904 %></td>
+    <td><%= p.y1905 %></td>
+    <td><%= p.y1906 %></td>
+    <td><%= p.y1907 %></td>
+    <td><%= p.y1908 %></td>
+    <td><%= p.y1909 %></td>
+    <td><%= p.y1910 %></td>
+    <td><%= p.y1911 %></td>
+    <td><%= p.y1912 %></td>
+    <td><%= p.y2001 %></td>
+    <td><%= p.y2002 %></td>
+    <td><%= p.y2003 %></td>
+
+    <td><%= p.team %></td>
+    <td><%= p.tech %></td>
+    <td><%= p.salestype %></td>
+    <td><% if p.pf == 1 %> S <% elsif p.pf == 0.8 %> A <% elsif p.pf == 0.5 %> B <% elsif p.pf == 0 %> C <% else %> --- <% end %></td>
+    <td><%= p.pf %></td>
+    <td><%= p.level %></td>
+
+    <td><%= p.pjprice %></td>
+    <td><% if p.contract == nil %>---<% else %><%= p.contract %><% end %></td>
+    <td><% if p.start == nil %>---<% else %><%= p.start.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.end == nil %>---<% else %><%= p.end.strftime('%Y-%m') %><% end %></td>
+    
+    <td><% if p.delivery == nil %>---<% else %><%= p.delivery %><% end %></td>
+    <td><% if p.deliverymonth == nil %>---<% else %><%= p.deliverymonth.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.inspe == nil %>---<% else %><%= p.inspe %><% end %></td>
+    <td><% if p.insmonth == nil %>---<% else %><%= p.insmonth.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.deposit == nil %>---<% else %><%= p.deposit %><% end %></td>
+    <td><% if p.depomonth == nil %>---<% else %><%= p.depomonth.strftime('%Y-%m') %><% end %></td>
+    <td><% if p.deposit2 == nil %>---<% else %><%= p.deposit2 %><% end %></td>
+    <td><% if p.depomonth2 == nil %>---<% else %><%= p.depomonth2.strftime('%Y-%m') %><% end %></td>
+
+    <td><%= p.counta %></td>
+    <td><%= p.countb %></td>
+    <td><%= p.countc %></td>
+    <td><%= p.countg %></td>
+    
+    <td><%= p.countf %></td>
+    <td><%= p.countd %></td>
+    
+    <td><%= p.plancost %></td>
+    <td><%= p.realcost %></td>
+    <% if p.plancost != 0 and p.plancost !=nil %><% @planunit = p.pjprice/p.plancost %><% else %><% @planunit = '---' %><% end %>
+    <% if p.realcost != 0 and p.realcost !=nil %><% @realunit = p.pjprice/p.realcost %><% else %><% @realunit = '---' %><% end %>
+    <td><%= (@planunit.to_f).round(1) %></td>
+    <td><%= (@realunit.to_f).round(1) %></td>
+    <td><%= p.remarks %></td>
+  </tr>
+<% end %>    
+</tbody>
+</table>

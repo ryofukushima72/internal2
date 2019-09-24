@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>snusmumrik72</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+  <%= include_gon %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+
+<%
+=begin
+%>
+  #including turbolinks
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'http://wwww.google.com/jsapi', 'chartkick'  %>
+<%
+=end
+%>  
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+   google.charts.load('current', {'packages':['corechart']});
+   google.charts.setOnLoadCallback(drawVisualization);
+     //@color_column_graph_y~~ were described in read.html.erb in details
+     function drawVisualization() {
+     // Some raw data (not necessarily accurate)
+     var data = google.visualization.arrayToDataTable([
+     ['年月',   '単月計(確度込み)',{ role: 'style'}, '累月計(確度込み)'],
+     ['2018/04',   <%=@total_y1804_and_rf %>,'#41A317',<%=@cumulative_y1804_and_rf %>],
+     ['2018/05',   <%=@total_y1805_and_rf %>,'#41A317',<%=@cumulative_y1805_and_rf %>],
+     ['2018/06',   <%=@total_y1806_and_rf %>,'#41A317',<%=@cumulative_y1806_and_rf %>],
+     ['2018/07',   <%=@total_y1807_and_rf %>,'#41A317',<%=@cumulative_y1807_and_rf %>],
+     ['2018/08',   <%=@total_y1808_and_rf %>,'#41A317',<%=@cumulative_y1808_and_rf %>],
+     ['2018/09',   <%=@total_y1809_and_rf %>,'#41A317',<%=@cumulative_y1809_and_rf %>],
+     ['2018/10',   <%=@total_y1810_and_rf %>,'#41A317',<%=@cumulative_y1810_and_rf %>],
+     ['2018/11',   <%=@total_y1811_and_rf %>,'#41A317',<%=@cumulative_y1811_and_rf %>],
+     ['2018/12',   <%=@total_y1812_and_rf %>,'#41A317',<%=@cumulative_y1812_and_rf %>],
+     ['2019/01',   <%=@total_y1901_and_rf %>,'#41A317',<%=@cumulative_y1901_and_rf %>],
+     ['2019/02',   <%=@total_y1902_and_rf %>,'#41A317',<%=@cumulative_y1902_and_rf %>],
+     ['2019/03',   <%=@total_y1903_and_rf %>,'#41A317',<%=@cumulative_y1903_and_rf %>],
+     ['2019/04',   <%=@total_y1904_and_rf %>,'<%=translation_color_graph_1904(@column_name) %>',<%=@cumulative_y1904_and_rf %>],
+     ['2019/05',   <%=@total_y1905_and_rf %>,'<%=translation_color_graph_1905(@column_name) %>',<%=@cumulative_y1905_and_rf %>],
+     ['2019/06',   <%=@total_y1906_and_rf %>,'<%=translation_color_graph_1906(@column_name) %>',<%=@cumulative_y1906_and_rf %>],
+     ['2019/07',   <%=@total_y1907_and_rf %>,'<%=translation_color_graph_1907(@column_name) %>',<%=@cumulative_y1907_and_rf %>],
+     ['2019/08',   <%=@total_y1908_and_rf %>,'<%=translation_color_graph_1908(@column_name) %>',<%=@cumulative_y1908_and_rf %>],
+     ['2019/09',   <%=@total_y1909_and_rf %>,'<%=translation_color_graph_1909(@column_name) %>',<%=@cumulative_y1909_and_rf %>],
+     ['2019/10',   <%=@total_y1910_and_rf %>,'<%=translation_color_graph_1910(@column_name) %>',<%=@cumulative_y1910_and_rf %>],
+     ['2019/11',   <%=@total_y1911_and_rf %>,'<%=translation_color_graph_1911(@column_name) %>',<%=@cumulative_y1911_and_rf %>],
+     ['2019/12',   <%=@total_y1912_and_rf %>,'<%=translation_color_graph_1912(@column_name) %>',<%=@cumulative_y1912_and_rf %>],
+     ['2020/01',   <%=@total_y2001_and_rf %>,'<%=translation_color_graph_2001(@column_name) %>',<%=@cumulative_y2001_and_rf %>],
+     ['2020/02',   <%=@total_y2002_and_rf %>,'<%=translation_color_graph_2002(@column_name) %>',<%=@cumulative_y2002_and_rf %>],
+     ['2020/03',   <%=@total_y2003_and_rf %>,'<%=translation_color_graph_2003(@column_name) %>',<%=@cumulative_y2003_and_rf %>],
+     ]);
+
+     /*slider bar */
+     /*var dashboard = new google.visualization.Dashboard(
+         document.getElementById('dashboard_div'));
+	*/
+     // Create a range slider, passing some options
+     /*var priceRangeSlider = new google.visualization.ControlWrapper({
+	 'controlType': 'NumberRangeFilter',
+	 'containerId': 'filter_div',
+	 'options': {
+		 'filterColumnLabel': '累月計'
+	  	}
+	 });
+	*/
+      var options = {
+	      title : '売上金額',
+	      width: '1400px',
+         hAxis: {title: '年月'},
+	 seriesType: 'bars',
+	 //colors:['#2554C7', '#e42217'],//left: Sapphire Blue, right: Lava Red
+	 series: {1: {type: 'line'}},
+	 vAxis:{
+		/* viewWindow: {max: 400},*/
+		 //minValue:20,
+		 //maxValue:280,
+		 //gridlined:{count:15}
+		 gridlines:{count:5}
+	 
+	 	},
+	 chartArea:{
+	   top:10,
+	   bottom:60,
+	   left:40
+	 },
+	 pointSize: 3,
+	 /*legend: {position: "none"}*/
+
+      };
+
+	var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+	chart.draw(data, options);
+	
+	/*the chosen slider range*/
+	//dashboard.bind(priceRangeSlider, chart);
+	 // Draw the dashboard.
+	//dashboard.draw(data);
+
+
+     }
+   $('#editModal').on('show.bs.modal', function (event) { 
+   var button = $(event.relatedTarget) 
+   var idTxt = button.data('id') 
+   var chargeTxt = button.data('charge')
+   var modal = $(this)
+   console.log(idTxt)
+   modal.find('.modal-body input#id').val(idTxt)
+   modal.find('.modal-body input#charge').val(chargeTxt)
+   });
+   /*var $table = $('table');
+   $table.floatThead({
+   scrollContainer: function($table){
+   return $table.closest('.wrapper');
+     }
+   });*/
+  </script>
+<style type="text/css">
+.new_account{
+	color:white;
+	padding-left: 20px;
+}
+ .right_side{
+	float: right;
+	padding-right: 20px;
+ }
+</style>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-dark navbar-fixed-top" style="background-color:#021b42">
+	<div class="container">
+	<div class="navbar-header">
+	<a class="navbar-brand" href="/">HOME</a>
+	<a class="navbar-brand" href="/projects">入金管理</a>
+	<% if user_signed_in? %>
+<%
+=begin
+%>
+	<%= link_to 'パスワード変更', edit_user_registration_path, class:"navbar-brand"  %>
+	<%= link_to 'ログアウト', destroy_user_session_path , class:"navbar-brand" %>
+	<% else %>
+	<%= link_to "アカウント新規作成   ", new_user_registration_path, class:"navbar-brand" %>
+<%
+=end
+%>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+	</nav>
+
+
+
+<%= yield %>
+
+</body>
+</html>

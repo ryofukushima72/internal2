@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pj:</strong>
+  <%= @file_upload.project_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @file_upload.category %>
+</p>
+
+<p>
+  <strong>File name:</strong>
+  <%= @file_upload.file_name %>
+</p>
+
+<%= link_to 'Edit', edit_file_upload_path(@file_upload) %> |
+<%= link_to 'Back', file_uploads_path %>

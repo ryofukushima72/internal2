@@ -1,0 +1,35 @@
+<h2>新規申請</h2>
+<p id="notice"><%= notice %></p>
+<div>
+<table class='recordtime_user'>
+  <tr>
+    <td> ID：<%= @user.id %> </td>
+    <td> ユーザー名：<%= @user.fname %> <%= @user.gname %> </td>
+    <td> 社員番号：<%= @user.usercode %> </td>
+  </tr>
+</table>
+
+<div>
+
+<%= form_with(model: @recordholiday, :url => {:action => :create}, local: true) do |form| %>
+    <div>
+      <%= form.label :'休日区分(代休・有休)' %>
+      <%= form.select :alt, [['代休', true], ['有休', false]], class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label :'時間(半休・全休)' %>
+      <%= form.select :half, [['半休', true], ['全休', false]], class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label :'休日' %>
+      <%= form.date_field :rh %>
+    </div>
+        
+    <%= form.submit('保存',class: 'btn btn-primary my-1 mb-5 px-5') %>
+    
+
+<% end %>
+
+</div>
+
+<%= link_to '戻る', recordholiday_path, class: 'btn btn-default' %>

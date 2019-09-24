@@ -1,0 +1,60 @@
+<h2>勤怠申請</h2>
+<p id="notice"><%= notice %></p>
+<div>
+
+<table class='recordtime_user'>
+  <tr>
+    <td> ID：<%= @user.id %> </td>
+    <td> ユーザー名：<%= @user.fname %> <%= @user.gname %> </td>
+    <td> 社員番号：<%= @user.usercode %> </td>
+  </tr>
+  <tr>
+    <td>有休残数：</td><td><%= @user.paidholiday %>日</td>
+    <td>申請中：</td><td><%= @paid %>日</td>
+  </tr>
+  <tr>
+    <td>代休残数：</td><td><%= @user.altholiday %>日</td>
+    <td>申請中：</td><td><%= @alt %>日</td>
+  </tr>
+</table>
+  
+</div>
+
+<div>
+  <%= form_tag recordholiday_path, method: :get do %>
+    月選択
+    <%= month_field_tag :month, params[:month] %>
+    <%= submit_tag( "月で表示", name: nil)  %> 
+  <% end %>
+
+  <%= form_tag recordholiday_path, method: :get do %>
+    期間
+    <%= date_field_tag :month1, params[:month1] %>
+    ～
+    <%= date_field_tag :month2, params[:month2] %>
+    <%= submit_tag( "期間で表示", name: nil)  %> 
+  <% end %>
+</div>
+
+<%= link_to "新規申請", new_recordholiday_path, class: 'btn btn-default' %>
+
+<table class="recordholiday_record">
+  <tr>
+    <th>ID</th>
+    <th>休日希望日</th>
+    <th>承認</th>
+    <th>休日区分</th>
+    <th>時間</th>
+  </tr>
+  <% if @recordholiday.present? %>
+  <% @recordholiday.each do |t| %>
+  <tr>
+    <td><%= t.id %></td><!--ID-->
+    <td><%= t.rh %></td><!--休日希望日-->
+    <td><% if t.commit? %>承認済<% else %>未承認<% end %></td><!--承認-->
+    <td><% if t.alt? %>代休<% else %>有休<% end %></td><!--休日区分-->
+    <td><% if t.half? %>半休<% else %>全休<% end %></td><!--時間-->
+  </tr>
+  <% end %>
+  <% end %>
+</table>

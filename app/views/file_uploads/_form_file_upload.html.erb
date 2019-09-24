@@ -1,0 +1,43 @@
+<% @file_upload=FileUpload.new %>
+<%= form_for(@file_upload) do |f| %>
+  <% if @file_upload.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@file_upload.errors.count, "error") %> prohibited this file_upload from being saved:</h2>
+        <ul>
+		      <% @file_upload.errors.full_messages.each do |message| %>
+      		  <li><%= message %></li>
+	        <% end %>
+     	  </ul>
+    </div>
+  <% end %>
+
+  <div>
+  <input type="hidden" id="id" name="file_upload[project_id]" class="form-control" value="<%=params[:project_id] %>" >
+<!--  <input type="hidden" id="sale_id" name="file_upload[sale_id]" class="form-control" value="<%=params[:sale_id] %>" >  -->
+  <h5 style="display: inline-block; _display: inline;"><b>分類：</b></h5>
+		<input type="radio"  name="file_upload[category]" class="doc_category_E" value="e.議事録">議事録
+		<input type="radio" name="file_upload[category]" class="doc_category_A" value="a.NDA"D>NDA
+    	<input type="radio"  name="file_upload[category]" class="doc_category_B" value="b.見積書">見積書
+		<input type="radio"  name="file_upload[category]" class="doc_category_C" value="c.契約書">契約書
+		<input type="radio"  name="file_upload[category]" class="doc_category_G" value="g.注文書">注文書 
+		<input type="radio"  name="file_upload[category]" class="doc_category_F" value="f.検収書">検収書
+     	<input type="radio"  name="file_upload[category]" class="doc_category_D" value="d.請求書">請求書
+		
+		
+		
+    </div><br>
+
+  <h5 style="display: inline-block; _display: inline;"><b>実施日：</b></h5>
+	  <div class="field"  style="display: inline-block; _display: inline;">
+      	<input type="date" name="file_upload[mtg]" id="mtg" value="" class="form-control">
+    </div><br>
+  <h5 style="display: inline-block; _display: inline;"><b>ファイル：</b></h5>
+    <div class="field" style="display: inline-block; _display: inline;">    
+    
+	    <%= f.file_field :file_name %>
+    </div>  
+	<br>
+	  <div class="actions">
+	 	  <%= f.submit 'ファイルアップロード' , :class=>"btn btn-success"%>
+	  </div>
+<% end %>

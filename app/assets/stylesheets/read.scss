@@ -1,0 +1,322 @@
+// Place all the styles related to the read controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.text {
+  display: none;
+}
+.text01 {
+  display: block;
+}
+.tablerow {
+  display: none;
+}
+.tablerow01 {
+  display: table-row;
+}
+
+body {
+  padding-top: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+table.form_table_0 {
+  padding: 5px;
+  width: auto;
+}
+table.form_table_0 td {
+  padding: 5px;
+  width: 400px;
+  
+}
+table.search_index {
+  padding: 0px;
+  width: 1400px;
+}
+table.search_index td {
+  padding: 0px;
+  width: 700px;
+  
+}
+
+table.projects {
+
+  border-top:1px solid #0000af;
+
+  border-left:1px solid #0000af;
+
+  // border-collapse:collapse;
+
+  background:#ffffff;
+
+  font-size:100%;
+
+}
+
+// tbody tr {
+// 	background: #eee;
+// }
+// tbody tr:nth-child(odd) td {
+// 	background: #fff;
+// }
+
+.projects th {
+  // padding左右を付けるとスクロールで大きくずれる
+  padding-left:0px;
+  padding-top:6px;
+  padding-bottom:6px;
+  text-align: center;
+}
+.projects td {
+  // padding左右を付けるとスクロールで大きくずれる
+  margin-left:6px;
+  padding-top:6px;
+  padding-bottom:6px;
+  
+}
+
+.projects thead th, .projects thead td {
+
+  // border-right:1px solid #0000af;
+  // border-left:1px solid #0000af;
+  border-bottom:1px solid #0000af;
+
+  background:#d3f0ff;
+
+  // background-position:left top;
+
+  // text-align:center;
+
+}
+
+.projects tbody tr th, .projects tbody tr td {
+
+  border-right:1px solid #0000af;
+
+  border-bottom:1px solid #0000af;
+
+}
+
+.projects tbody tr:hover td, .projects tbody tr:hover th {
+
+  background: #f3f9f7;
+
+
+
+}
+
+.projects tbody tr:hover td a, .projects tbody tr:hover th a {
+
+  background: #f3f9f7;
+
+  
+}
+
+.projects tbody td a, .projects tbody th a {
+
+  border: none;
+
+  background: transparent;
+
+  color: #000000;
+
+  text-decoration: none;
+
+}
+
+.projects tbody td a:hover, .projects tbody th a:hover {
+
+  background: #f3f9f7;
+
+  text-decoration: underline;
+
+}
+
+.odd {
+
+  background: #ffeebb;
+
+}
+
+.container {
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.s_color{
+  background-color: #8eb8ff;
+  width: 80px;
+}
+.p_color{
+  background-color: #ffb536;
+  width: 80px;
+}
+.d_color{
+  background-color: #ffddff;
+  width: 80px;
+}
+.t_color{
+  background-color: #ccffcc;
+  width: 80px;
+}
+.m_color{
+  background-color: #ffffcc;
+  width: 80px;
+}
+.r_color{
+  background-color: #ff00ff;
+  width: 80px;
+}
+.f_color{
+  background-color: #336699;
+  width: 80px;
+}
+.g_color{
+  background-color: #669999;
+  width: 80px;
+}
+.h_color{
+  background-color: #999966;
+  width: 80px;
+}
+.z_color{
+  background-color: #fff;
+  width: 80px;
+}
+
+.pj_color_on{
+  background-color: #00ff00;
+  width: 150px;
+}
+.pj_color_off{
+  background-color: "";
+  width: 150px;
+}
+
+.price_color_past{
+  background-color: #bfbfbf;
+  width: 86px;
+}
+
+.price_color_future{
+  background-color: "";
+  width: 86px;
+}
+
+.table1 {
+  table-layout: fixed;
+}
+.column1{
+  width: 90px;
+  // border-right:1px solid #0000af;
+  // padding-left:8px;
+  // position:absolute;
+  // left:50px;
+  // background:mintcream;
+}
+// お客様
+.column2{
+  width: 160px;
+  // border-right:1px solid #0000af;
+}
+// charge
+.column3{
+  width: 100px;
+  // border-right:1px solid #0000af;
+}
+// task
+.column4{
+  width: 400px;
+  // border-right:1px solid #0000af;
+}
+
+.column5{
+  width: 100px;
+  // border-right:1px solid #0000af;
+}
+.column6{
+  width: 100px;
+  // border-right:1px solid #0000af;
+  
+}
+// 合計
+.column7{
+  width: 80px;
+  // border-right:1px solid #0000af;
+  
+}
+.column8{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column9{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column10{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column11{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column12{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column13{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column14{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column15{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column16{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column17{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column18{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column19{
+  width: 80px;
+  // border-right:1px solid #0000af;
+}
+.column20{
+  width: 300px;
+  // border-right:1px solid #0000af;
+}
+// ファイル
+.column21{
+  width: 60px;
+  // border-right:1px solid #0000af;
+}
+.column22{
+  width: 40px;
+  // border-right:1px solid #0000af;
+}
+// 議事録
+.column23{
+  width: 60px;
+  border-right:1px solid #0000af;
+}

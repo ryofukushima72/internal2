@@ -1,0 +1,370 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div>・* は必須項目</div>
+<div>・<b style="color:#0000ff">青字</b> はエンジニアの入力項目</div>
+<div>・<b style="color:#00ff40">緑字</b> は変更不可。管理者の承認を得てください。</div>
+<table class='form_table_0'>
+<tr><td colspan="2">
+<div class="field" >
+    <div class="col-xs-2">
+      <%= form.label :'PJ名称 *', class:'control-label'  %>
+    </div>
+    <div class="col-xs-10">
+      <%= form.text_field :task, class: 'form-control' %>
+    </div>
+  </div>
+</td>
+<td colspan="2">
+<div class="field" >
+  <div class="col-xs-2">
+    <%= form.label :'備考', class:'control-label'  %>
+  </div>
+  <div class="col-xs-10">
+    <%= form.text_field :remarks, class: 'form-control' %>
+  </div>
+</div>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<table>
+<tr><td>
+  <div class="field" >
+    <div class="col-xs-4">
+      <%= form.label :'No *', class:'control-label' %>
+    </div>
+    <div class="col-xs-8">
+      <%= form.text_field :no, class: 'form-control'%>
+    </div>
+  </div>
+  </td><tr><tr><td>
+  
+  </td><tr><tr><td>
+  <div class="field" >
+    <div class="col-xs-4">
+      <%= form.label :'担当 *', class:'control-label'  %>
+    </div>
+    <div class="col-xs-8">
+      <%= form.text_field :charge, class: 'form-control' %>
+    </div>
+  </div>
+  </td><tr><tr><td>
+  <div class="field" >
+    <div class="col-xs-4">
+      <%= form.label :'お客様 *', class:'control-label'  %>
+    </div>
+    <div class="col-xs-8">
+      <%= form.text_field :company, class: 'form-control' %>
+    </div>
+  </div>
+  </td>
+  </tr>
+  </table>
+</td>
+
+<td valign="top">
+<table>
+<tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/04 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1904, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/05 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1905, data: { autonumeric: true } , class: 'form-control'%>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/06 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1906, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/07 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1907, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/08 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1908, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/09 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1909, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/10 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1910, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/11 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1911, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'19/12 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y1912, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'20/01 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y2001, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'20/02 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y2002, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'20/03 *', class:'control-label' %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :y2003, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr>
+</table>    
+</td>
+
+<td valign="top">
+<table>
+<tr>
+<td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'契約日', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :contract, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'開始日', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :start, class: 'form-control'%>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'終了日', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :end, class: 'form-control'%>
+  </div>
+</div>
+
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4" style="color:#0000ff">
+    <%= form.label :'納入予定日', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :deliverymonth, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4" style="color:#0000ff">
+    <%= form.label :'納入月', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :delivery, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+
+<div class="field" style="color:#0000ff">
+  <div class="col-xs-4">
+    <%= form.label :'検収予定日', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :inspe, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4" style="color:#0000ff">
+    <%= form.label :'検収月', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :insmonth, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'入金予定日', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :deposit, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'入金月', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.date_field :depomonth, class: 'form-control' %>
+  </div>
+</div>
+</td></tr></div>
+</table>
+</td>
+
+<td valign="top">
+<table>
+<tr>
+<td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'Team', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.select :team, [["未定", "未定"], ["AIDIP", "AIDIP"], ["DBNLP", "DBNLP"], ["Robosense", "Robosense"], ["Cloud", "Cloud"]]  %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'製品名', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.select :tech, [["未定", "未定"], ["Advisory", "Advisory"], ["OCR", "OCR"], ["Sia", "Sia"], ["Dia", "Dia"], ["NLP", "NLP"], ["DB", "DB"], ["Cloud", "Cloud"], ["UI/UX", "UI/UX"], ["Robo", "Robo"], ["R3", "R3"]]  %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'SalesType', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.select :salestype, [["未定", "未定"], ["initial", "initial"], ["stock", "stock"], ["resell", "resell"]] %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'確度', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.select :pf, [["S:1.0", "1"], ["A:0.8", "0.8"], ["B:0.5", "0.5"], ["C:0", "0"]] %>
+  </div>
+</div>
+</td></tr><tr><td>
+
+<div class="field" >
+  <div class="col-xs-4" style="color:#00ff40">
+    <%= form.label :'段階', class:'control-label'  %>
+  </div>
+  
+  <div class="col-xs-8">
+    <%= form.select :level, [["S:営業", "S:営業"], ["P:POC", "P:POC"], ["D:開発", "D:開発"], ["M:運用", "M:運用"], ["T:追加学習", "T:追加学習"], ["R:Royalty", "R:Royalty"], ["F:完了", "F:完了"], ["G:休眠", "G:休眠"], ["H:失注", "H:失注"]] %>
+  </div>
+</div>
+
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4">
+    <%= form.label :'受注額:円', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :pjprice, data: { autonumeric: true }, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4" style="color:#0000ff">
+    <%= form.label :'予定工数:人月', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :plancost, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+<div class="field" >
+  <div class="col-xs-4" style="color:#0000ff">
+    <%= form.label :'実績工数:人月', class:'control-label'  %>
+  </div>
+  <div class="col-xs-8">
+    <%= form.text_field :realcost, class: 'form-control' %>
+  </div>
+</div>
+</td></tr><tr><td>
+
+</td></tr>
+</table>
+</td>
+</tr></table>
+
+
+
+
+  <div class="actions">
+    <%= form.submit('保存',class: 'btn btn-primary my-1 mb-5 px-5') %>
+  </div>
+<% end %>

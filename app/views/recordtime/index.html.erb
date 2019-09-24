@@ -1,0 +1,309 @@
+<h2>出勤簿</h2>
+<p id="notice"><%= notice %></p>
+<div>
+
+<table class='recordtime_user'>
+  <tr>
+    <td> ID：<%= @user.id %> </td>
+    <td> ユーザー名：<%= @user.fname %> <%= @user.gname %> </td>
+    <td> 社員番号：<%= @user.usercode %> </td>
+  </tr>
+</table>
+  <a class='btn btn-default' href= "recordtime/<%= @user.id %>/useredit" >ユーザー情報編集</a>
+</div>
+
+<div>
+  <%= form_tag recordtime_path, method: :get do %>
+    月選択
+    <%= month_field_tag :month, params[:month] %>
+    <%= submit_tag( "月で表示", name: nil)  %> 
+  <% end %>
+
+  <%= form_tag recordtime_path, method: :get do %>
+    期間
+    <%= date_field_tag :month1, params[:month1] %>
+    ～
+    <%= date_field_tag :month2, params[:month2] %>
+    <%= submit_tag( "期間で表示", name: nil)  %> 
+  <% end %>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmodal"  data-user_id=<%= @user.id %> data-date=<%= @time.strftime("%Y-%m-%d") %> data-time=<%= @time.strftime("%H:%M") %> >打刻</button>
+<div>
+  <table class="recordtime_record">
+    <thead  
+      <tr>
+        <th>日付</th>
+        <th>曜日</th>
+        <th>休日区分</th>
+        <th>出勤時刻</th>
+        <th>退勤時刻</th>
+        <th>勤務時間</th>
+        <th>休憩時間</th>
+        <th>労働時間</th>
+        <th>残業時間</th>
+        <th>深夜時間</th>
+        <th>有給時間</th>
+        <th>勤怠状況</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    <% @sum_run_time = 0 %>
+    <% @sum_over_time =  0 %>
+    <% @sum_night_time = 0 %>
+    <% @run_count = 0 %>
+    
+      <% @date.each do |date| %>
+        <% @start_time = nil %>
+        <% @end_time = nil %>
+        <% @work_time = nil %>
+        <% @rest_start_time = nil %>
+        <% @rest_end_time = nil %>
+        <% @rest_time = nil %>
+        <% @run_time = nil %>
+        <% @over_time = nil %>
+        <% @over_end_time = nil %>
+        <% @over_start_time = nil %>
+        <% @night_time = nil %>
+        <% @night_rest_end_time = nil %>
+        <% @night_rest_start_time = nil %>
+        <% @night_rest_time = nil %>
+        
+        
+        <tr>
+          <td><%= link_to date.strftime("%m-%d"), edit_recordtime_path(:date => date.strftime("%Y-%m-%d")) %></td>
+          <td class=<%= transfer_wday(date.strftime("%Y-%m-%d")) %>><%= date.strftime("#{%w(日 月 火 水 木 金 土)[date.wday]}") %></td>
+          <td><% if date.workday? %><% else %>holiday<% end %></td><!--休日-->
+          <td><!--出勤時間-->
+            <% @recordtime.each do |t| %>
+              <% if t.rt.strftime("%m-%d") == date.strftime("%m-%d") %>
+                <% if t.recordstate_id == 1 %>
+                  <%= t.rt.strftime("%H:%M") %>
+                  <% @start_time = t.rt_juli %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><!--退勤時間-->
+            <% @recordtime.each do |t| %>
+              <% if t.rt.strftime("%m-%d") == date.strftime("%m-%d") %>
+                <% if t.recordstate_id == 2 %>
+                  <%= t.rt.strftime("%H:%M") %>
+                  <% @end_time = t.rt_juli %>
+                    <% if t.night == true %>
+                      <% @over_end_time = t.rt_juli %>
+                      <% if t.begin_juli.present? %>
+                        <% @over_start_time = t.begin_juli %>
+                      <% end %>
+                    <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+          
+          <% if @start_time.present? and @end_time.present? %>         
+            <% @work_time = (@end_time - @start_time) %>
+          <% end %>
+
+          <td><% if @work_time != nil %><%= ((@work_time)*24).round(2) %><% else %><%end %></td><!--勤務時間-->
+            
+            <% @rest_time = 0 %>
+            <% @night_rest_time = 0 %>
+            <% @recordtime.each do |t| %>
+              <% if t.rt.strftime("%m-%d") == date.strftime("%m-%d") %>
+
+                <% if t.recordstate_id == 3 %>
+                  <% @rest_start_time = t.rt_juli %>
+                    <% if t.night == true %>
+                      <% @night_rest_start_time = t.rt_juli %>
+                    <% end %>
+                <% elsif t.recordstate_id == 4 %>
+                  <% @rest_end_time = t.rt_juli %>
+                    <% if t.night == true %>
+                      <% @night_rest_end_time = t.rt_juli %>
+                    <% end %>
+                <% end %>
+
+                <% if @rest_start_time.present? and @rest_end_time.present? %>
+                  <% @rest_time = @rest_time + (@rest_end_time - @rest_start_time) %>
+                  <% @rest_start_time = nil %>
+                  <% @rest_end_time = nil %>
+                <% end %>
+                <% if @night_rest_start_time.present? and @night_rest_end_time.present? %>
+                  <% @night_rest_time = @night_rest_time + (@night_rest_end_time - @night_rest_start_time) %>
+                  <% @night_rest_start_time = nil %>
+                  <% @night_rest_end_time = nil %>
+                <% elsif @night_rest_end_time.present? %>
+                  <% @night_rest_time = @night_rest_time + (@night_rest_end_time - t.begin_juli) %>
+                  
+                  <% @night_rest_end_time = nil %>
+                <% end %>
+              <% end %>
+            <% end %>
+            
+          <td><%if @rest_time != 0 %> <%= (@rest_time*24).round(2) %><% else %><%end %> </td><!--休憩時間-->
+          
+          <% if @work_time.present? and @rest_time.present? %>
+          <% @run_time = @work_time - @rest_time %>
+          <% elsif @work_time.present? %>
+          <% @run_time = @work_time %>
+          <% end %>
+          <td><%if @run_time.present? %><% @sum_run_time = @sum_run_time + @run_time %><% @run_count = @run_count + 1 %> <%= (@run_time*24).round(2) %><% else %><%end %>   </td><!--労働時間-->
+          <% if @run_time.present? %>
+          <% if @run_time*24 >= 8 %>
+          <% @over_time = @run_time*24 - 8 %>
+          <% end %>
+          <% end %>
+          <td><% if @over_time.present? %><% @sum_over_time = @sum_over_time + @over_time %><%= @over_time.round(2) %><% end %></td><!--残業時間-->
+
+          <% if @over_time.present? %>
+          <% if @over_time > 0 %>
+            <% if @over_end_time.present? and @over_start_time.present? %>
+              <% if @night_rest_time.present? %>
+                <% @night_time = (@over_end_time - @over_start_time - @night_rest_time)*24 %>
+              <% else %>
+                <% @night_time = (@over_end_time - @over_start_time)*24 %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% end %>
+
+
+
+
+
+          <td><% if @night_time.present? %><% @sum_night_time =  @sum_night_time + @night_time %><%= @night_time.round(2) %><% end %></td><!--深夜時間-->
+          <td></td><!--有給時間-->
+          <td><!--勤務状況-->
+            <% if @time.strftime("%Y-%m-%d") == date.strftime("%Y-%m-%d") %>
+              <% if @start_time.present? %>
+                <% if @end_time.present? %>退勤
+                <% elsif @rest_start_time.present? %>休憩
+                <% else %>出勤
+                <% end %>
+              <% else %>出勤前 
+              <% end %>
+            <% end %> 
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <table>
+  <tr valign="top">
+  <td>
+  <table class='recordtime_summary'>
+    <tr>
+      <td>表示期間</td>
+      <td><%= @dstart.strftime("%Y年%m月-%d日") %>~<%= @dend.strftime("%Y年%m月-%d日") %></td>
+    </tr>
+    <tr>
+      <td>所定労働日数</td>
+      <td><%= @work_count %></td>
+    </tr>
+    <tr>
+      <td>労働日数</td>
+      <td><%= @run_count %></td>
+    </tr>
+    <tr>
+      <td>所定労働時間合計</td>
+      <td><%= @work_count * 8.0 %></td>
+    </tr>
+    <tr>
+      <td>労働時間合計</td>
+      <td><%= (@sum_run_time * 24).round(2) %></td>
+    </tr>
+    <tr>
+      <td>残業時間合計</td>
+      <td><%= (@sum_over_time).round(2) %></td>
+    </tr>
+    <tr>
+      <td>深夜時間合計</td>
+      <td><%= (@sum_night_time).round(2) %></td>
+    </tr>
+  </table>
+  </td>
+  <td valign="top">
+  <table class='recordtime_summary'>
+    <tr>
+      <td>有休残数</td>
+      <td><%= @user.paidholiday %></td>
+    </tr>
+    <tr>
+      <td>有休申請中</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>代休残数</td>
+      <td><%= @user.altholiday %></td>
+    </tr>
+    <tr>
+      <td>代休申請中</td>
+      <td></td>
+    </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  
+</div>
+
+
+<!--Add Modal -->
+<div class="modal fade" id="addmodal" role="dialog">
+  <div class="modal-dialog">
+
+<!-- Modal content-->
+    <div class="modal-content">
+      <form action="/recordtime/create">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">打刻画面</h4>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" name="user_id" id="user_id" value ="" >
+            <input type="hidden" name="date" id="date" value ="" >
+            <input type="hidden" name="time" id="time" value ="" >
+            <div class="form-group">
+              <h4>user_id(hidden)</h4>
+                <input type="text" name="user_id" id="user_id" disabled value ="" class="form-control">
+                
+              <h4>打刻タイプ</h4>
+                <select name="recordstate_id" class="form-control" prompt="選択してください">
+					        <% @recordstate.each do |a| %>
+					          <option value=<%= a.id %> class="recordstate_<%= a.id %>"><%= a.name %></option>
+					        <% end %>
+					      </select>             
+              <h4>日付</h4>
+                <input type="text" name="date" id="date" disabled value ="" class="form-control">
+              <h4>時刻</h4>
+                <input type="text" id="time" name="time" disabled value ="" class="form-control">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+　        <button type="submit" class="btn btn-success">上記の内容を保存</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$('#addmodal').on('show.bs.modal', function (event) { 
+      var button = $(event.relatedTarget) 
+      var user_idTxt = button.data('user_id')
+      var dateTxt = button.data('date')
+      var timeTxt = button.data('time')
+      console.log("user_id");
+      var modal = $(this)
+      modal.find('.modal-body input#user_id').val(user_idTxt)
+      modal.find('.modal-body input#date').val(dateTxt)
+      modal.find('.modal-body input#time').val(timeTxt)
+      });
+
+</script>
+
