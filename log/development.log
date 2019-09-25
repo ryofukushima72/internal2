@@ -1,0 +1,425 @@
+Started GET "/" for ::1 at 2019-09-25 10:23:05 +0900
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#index as HTML
+Filter chain halted as :basic rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-09-25 10:23:18 +0900
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (7.8ms)
+Started GET "/" for ::1 at 2019-09-25 10:23:29 +0900
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 23142ms (Views: 23137.6ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 12016ms (Views: 12010.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-09-25 10:23:49 +0900
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 350ms (Views: 344.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-09-25 10:23:52 +0900
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 385ms (Views: 379.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/projects" for ::1 at 2019-09-25 10:23:55 +0900
+Processing by ProjectsController#index as HTML
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2019-09-25 10:23:57 +0900
+Processing by Users::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (58.9ms)
+Completed 200 OK in 374ms (Views: 338.2ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2019-09-25 10:23:59 +0900
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v0O4/B3LIJkrj4n1BZORkxO0/in5ShdMwg4FOwfinzHTpIB+Dgo59wrQoHitcPUxQaN/gDnP90sAkxzRQO8alQ==", "user"=>{"email"=>"ryo.fukushima@arithmer.co.jp", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "ryo.fukushima@arithmer.co.jp"], ["LIMIT", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 401 Unauthorized in 234ms (ActiveRecord: 0.5ms)
+
+
+Processing by Users::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v0O4/B3LIJkrj4n1BZORkxO0/in5ShdMwg4FOwfinzHTpIB+Dgo59wrQoHitcPUxQaN/gDnP90sAkxzRQO8alQ==", "user"=>{"email"=>"ryo.fukushima@arithmer.co.jp", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 544ms (Views: 388.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2019-09-25 10:24:25 +0900
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"r0UkCiLT7Esx1yy2PDHUKcgXZtG7eHEpa3APQdoC3e/DohyIMRL1JRCIBTuU0rCLmgDneHv9kS6p7RarnQ9YSw==", "user"=>{"email"=>"snusmumrik72@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "snusmumrik72@gmail.com"], ["LIMIT", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (2.4ms)[0m  [1m[33mUPDATE "users" SET "remember_created_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["remember_created_at", "2019-09-25 01:24:25.437503"], ["updated_at", "2019-09-25 01:24:25.439438"], ["id", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (9.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (1.5ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 23], ["current_sign_in_at", "2019-09-25 01:24:25.458873"], ["last_sign_in_at", "2019-09-24 04:45:49.649074"], ["current_sign_in_ip", "::1"], ["updated_at", "2019-09-25 01:24:25.460838"], ["id", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 281ms (ActiveRecord: 23.7ms)
+
+
+Started GET "/projects" for ::1 at 2019-09-25 10:24:25 +0900
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT SUM("projects"."y1804") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:159
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("projects"."y1805") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:160
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("projects"."y1806") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:161
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT SUM("projects"."y1807") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:162
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1808") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:163
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1809") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:164
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT SUM("projects"."y1810") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:165
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1811") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:166
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1812") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:167
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1901") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:168
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1902") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:169
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1903") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:170
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM(y1904*pfdummy) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:171
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("projects"."y1905") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:173
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1906") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:174
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT SUM("projects"."y1907") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:175
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1908") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:176
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1909") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:177
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1910") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:178
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1911") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:179
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("projects"."y1912") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:180
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y2001") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:181
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y2002") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:182
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y2003") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:183
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1804") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:188
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1805") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:189
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1806") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:190
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1807") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:191
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1808") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:192
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT SUM("projects"."y1809") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:193
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1810") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:194
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1811") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:195
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1812") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:196
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1901") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:197
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1902") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:198
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1903") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:199
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1904") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:200
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT SUM("projects"."y1905") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:201
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1906") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:202
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1907") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:203
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1908") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:204
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y1909*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:206
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM(y1910*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:211
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y1911*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:216
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y1912*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:221
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM(y2001*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:226
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM(y2002*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:231
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y2003*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:236
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/views/projects/index.html.erb:288
+  Rendered projects/index.html.erb within layouts/application (257.7ms)
+Completed 200 OK in 823ms (Views: 507.3ms | ActiveRecord: 23.5ms)
+
+
+Started GET "/fixed_midashi.js" for ::1 at 2019-09-25 10:24:26 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/fixed_midashi.js"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+request_store (1.4.1) lib/request_store/middleware.rb:19:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/projects/2/edit" for ::1 at 2019-09-25 10:24:32 +0900
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mProject Load (1.9ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:309
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:310
+  Rendering projects/edit.html.erb within layouts/application
+  Rendered projects/edit.html.erb within layouts/application (59.8ms)
+Completed 200 OK in 385ms (Views: 346.3ms | ActiveRecord: 2.4ms)
+
+
+Started PATCH "/projects/2" for ::1 at 2019-09-25 10:24:34 +0900
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nTKHgJ3sAZrXn7VqHjG3PEHYQ3MJAE86sKDgm03FZwHwO78nRZOydd0wPOtXYZ2lLI3gb5gpKtbAUGVaQU26jA==", "project"=>{"task"=>"毎月100万角度S", "remarks"=>"", "no"=>"test1", "charge"=>"test1", "company"=>"test1", "y1904"=>"10000000.00", "y1905"=>"10000000.00", "y1906"=>"10000000.00", "y1907"=>"10000000.00", "y1908"=>"10000000.00", "y1909"=>"10000000.00", "y1910"=>"10000000.00", "y1911"=>"10000000.00", "y1912"=>"10000000.00", "y2001"=>"10000000.00", "y2002"=>"10000000.00", "y2003"=>"10000000.00", "contract"=>"2019-09-13", "start"=>"2019-09-06", "end"=>"2019-09-19", "deliverymonth"=>"2019-09-21", "delivery"=>"2019-09-16", "inspe"=>"2019-09-25", "insmonth"=>"2019-09-05", "deposit"=>"2019-09-22", "depomonth"=>"2019-09-07", "deposit2"=>"", "depomonth2"=>"", "deposittype"=>"その他", "team"=>"未定", "tech"=>"Advisory", "salestype"=>"initial", "pf"=>"1", "pjprice"=>"100000000.00", "plancost"=>"100.5", "realcost"=>"200.0"}, "commit"=>"保存", "id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:309
+  [1m[36mCACHE Project Load (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:310
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/projects_controller.rb:93
+  [1m[36mProject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."no" = ? AND "projects"."id" != ? LIMIT ?[0m  [["no", "test1"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:93
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/projects_controller.rb:93
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/projects_controller.rb:115
+  [1m[36mCACHE Project Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."no" = ? AND "projects"."id" != ? LIMIT ?[0m  [["no", "test1"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:115
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/projects_controller.rb:115
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 28ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/projects" for ::1 at 2019-09-25 10:24:34 +0900
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ C:/Ruby/Ruby26-x64/lib/ruby/gems/2.6.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1804") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:159
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1805") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:160
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1806") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:161
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1807") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:162
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1808") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:163
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1809") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:164
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1810") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:165
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1811") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:166
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1812") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:167
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1901") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:168
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1902") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:169
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1903") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:170
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM(y1904*pfdummy) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:171
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1905") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:173
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1906") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:174
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("projects"."y1907") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:175
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1908") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:176
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("projects"."y1909") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:177
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM("projects"."y1910") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:178
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT SUM("projects"."y1911") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:179
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("projects"."y1912") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:180
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("projects"."y2001") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:181
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("projects"."y2002") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:182
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("projects"."y2003") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:183
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1804") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:188
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1805") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:189
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1806") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:190
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1807") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:191
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1808") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:192
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1809") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:193
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1810") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:194
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1811") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:195
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1812") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:196
+  [1m[35mCACHE  (0.2ms)[0m  [1m[34mSELECT SUM("projects"."y1901") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:197
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1902") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:198
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1903") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:199
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("projects"."y1904") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:200
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1905") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:201
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1906") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:202
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1907") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:203
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM("projects"."y1908") FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:204
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM(y1909*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:206
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y1910*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:211
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM(y1911*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:216
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y1912*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:221
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(y2001*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:226
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM(y2002*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:231
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM(y2003*pf) FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/controllers/projects_controller.rb:236
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE ("projects"."level" = 'S:営業' OR "projects"."level" = 'A:Advisory' OR "projects"."level" = 'P:POC' OR "projects"."level" = 'D:開発' OR "projects"."level" = 'M:運用' OR "projects"."level" = 'T:追加学習' OR "projects"."level" = 'R:Royalty')[0m
+  ↳ app/views/projects/index.html.erb:288
+  Rendered projects/index.html.erb within layouts/application (87.3ms)
+Completed 200 OK in 612ms (Views: 373.2ms | ActiveRecord: 17.1ms)
+
+
+Started GET "/fixed_midashi.js" for ::1 at 2019-09-25 10:24:35 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/fixed_midashi.js"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+request_store (1.4.1) lib/request_store/middleware.rb:19:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-09-25 10:31:55 +0900
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:7
+  Rendered home/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 365ms (Views: 355.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2019-09-25 10:41:10 +0900
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:7
+  Rendered home/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 279ms (Views: 272.8ms | ActiveRecord: 0.6ms)
+
+
