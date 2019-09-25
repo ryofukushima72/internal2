@@ -135,7 +135,7 @@ class RecordtimeController < ApplicationController
       rt1 = params[:date]
       rt2 = params[:time]
       rt = rt1+' '+rt2
-      rt = Time.parse(rt)
+      rt = Time.zone.parse(rt)
 
       begintime =Time.zone.local(rt.strftime('%Y'), rt.strftime('%m'), rt.strftime('%d'), 22, 00)
       
